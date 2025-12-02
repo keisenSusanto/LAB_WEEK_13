@@ -1,0 +1,42 @@
+Keisen Susanto
+00000078136
+MAP WEEK 13
+
+1. Mengapa MVVM itu penting? File apa saja yang termasuk Model, View, dan ViewModel?
+
+MVVM penting karena membantu memisahkan antara tampilan (UI), logika bisnis, dan pengelolaan data agar kode menjadi lebih terstruktur, mudah dirawat, mudah diuji, serta mudah dikembangkan.
+Model berfungsi untuk mengelola data dan sumber data. Pada project ini yang termasuk Model adalah:
+- Movie.kt
+- MovieRepository.kt
+- MovieDao.kt
+- MovieDatabase.kt
+
+View berfungsi untuk menampilkan tampilan kepada pengguna. File yang termasuk View adalah:
+- MainActivity.kt
+- DetailsActivity.kt
+- activity_main.xml
+- view_movie_item.xml
+
+ViewModel berfungsi sebagai penghubung antara Model dan View, serta menyimpan data yang akan ditampilkan ke UI:
+- MovieViewModel.kt
+
+2. Mengapa Data Binding lebih efisien dibandingkan cara biasa?
+
+Data Binding lebih efisien karena memungkinkan View terhubung langsung dengan ViewModel tanpa perlu menggunakan findViewById() atau observer secara manual. Dengan Data Binding, perubahan data pada ViewModel akan otomatis memperbarui tampilan UI. Selain itu, penggunaan Data Binding mengurangi jumlah kode, meningkatkan performa aplikasi, serta meminimalisir kesalahan dalam pengambilan komponen UI.
+
+3. Mengapa penggunaan Singleton Pattern pada Room Database itu penting?
+
+Singleton Pattern penting karena memastikan hanya ada satu instance database yang digunakan di seluruh aplikasi. Hal ini mencegah terjadinya pembuatan banyak database pada thread yang berbeda yang dapat menyebabkan inkonsistensi data dan race condition. Selain itu, pembuatan database merupakan proses yang berat, sehingga penggunaan satu instance akan meningkatkan efisiensi dan performa aplikasi.
+
+4. Mengapa Repository Pattern pada Part 2 & 3 itu penting?
+
+Repository Pattern penting karena berfungsi sebagai pusat pengelola data yang menjadi penghubung antara API dan database lokal (Room). Repository membuat ViewModel tidak perlu mengetahui sumber data secara langsung, apakah dari internet atau dari database. Hal ini meningkatkan modularitas kode, mempermudah pemeliharaan, mendukung penggunaan data secara offline, serta membuat aplikasi lebih mudah diuji.
+
+5. Apakah ada cara lain untuk memperbarui database selain menggunakan WorkManager?
+
+Ya, ada beberapa cara lain selain menggunakan WorkManager, antara lain:
+- Menggunakan Swipe Refresh untuk memperbarui data secara manual oleh pengguna.
+- Menggunakan Foreground Service untuk melakukan pengambilan data selama aplikasi berjalan.
+- Menggunakan Firebase Cloud Messaging (FCM) untuk melakukan pembaruan data ketika server mengirimkan notifikasi.
+- Menggunakan AlarmManager untuk melakukan tugas terjadwal, meskipun kurang andal dibandingkan WorkManager.
+Namun, WorkManager merupakan metode terbaik karena dapat berjalan di background, hemat baterai, tetap berjalan meskipun aplikasi ditutup, serta tetap berjalan walaupun perangkat direstart.
